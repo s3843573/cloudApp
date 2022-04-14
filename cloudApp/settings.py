@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6h#=i3&0ze)7m46(*0u^$j@4$fs0q-kgh@(6v_@0i#_x+g8mq0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://assignment1-env.eba-yvmjbxb8.us-east-1.elasticbeanstalk.com/', '127.0.0.1']
 
 
 # Application definition
@@ -132,5 +132,5 @@ LOGIN_REDIRECT_URL = "store-home"
 MEDIA_ROOT = os.path.join(BASE_DIR, "images")
 MEDIA_URL = "/images/"
 
-ALLOWED_HOSTS = [
-    'http://assignment1-env.eba-yvmjbxb8.us-east-1.elasticbeanstalk.com/']
+# ALLOWED_HOSTS = [
+#     'http://assignment1-env.eba-yvmjbxb8.us-east-1.elasticbeanstalk.com/']
