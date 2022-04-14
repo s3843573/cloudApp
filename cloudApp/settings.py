@@ -131,3 +131,6 @@ LOGIN_REDIRECT_URL = "store-home"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "images")
 MEDIA_URL = "/images/"
+
+ALLOWED_HOSTS = [
+    'http://assignment1-env.eba-yvmjbxb8.us-east-1.elasticbeanstalk.com/']
