@@ -1,7 +1,46 @@
-{% extends "store/base.html" %}
+{% extends "store/base.html" %} {% block content %}
+<h1>Product Page</h1>
+<!-- <div class="d-flex flex-column" style="background-color: beige"> -->
+<div class="row">
+  <div class="col-md-6">
+    <img
+      class="card-img-top"
+      style="width: 540px; height: auto; display: block"
+      src="{{ product.image.url }}"
+      data-holder-rendered="true"
+    />
+  </div>
+  <div class="col-md-6">
+    <h2>{{product.name}}</h2>
+    <p>{{product.description}}</p>
+    <div
+      style="
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      "
+    >
+      <h3>${{product.price}}</h3>
+      <button type="button" class="btn btn-primary">Add to Cart</button>
+    </div>
+  </div>
+</div>
+<div
+  style="
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  "
+>
+  Reviews
+</div>
 
-{% block content %}
-
-<h1>Product</h1>
-
-{% endblock content %}
+<!-- <div class="card mb-4 box-shadow"></div> -->
+<!-- </div> -->
+{{product.product_title}} {% endblock content %}
