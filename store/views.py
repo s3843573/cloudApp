@@ -20,7 +20,3 @@ def about(request):
 
 def cart(request):
     return render(request, 'store/cart.html')
-
-
-def product(request):
-    return render(request, 'store/product.html')
