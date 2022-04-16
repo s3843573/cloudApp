@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6h#=i3&0ze)7m46(*0u^$j@4$fs0q-kgh@(6v_@0i#_x+g8mq0
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'a1-env.eba-ugfjphnp.us-west-2.elasticbeanstalk.com']
+    'a1-env.eba-bwtqkf5m.us-east-1.elasticbeanstalk.com']
 
 # Application definition
 
@@ -77,9 +77,17 @@ WSGI_APPLICATION = 'cloudApp.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "a1",
+        'USER': "admin",
+        'PASSWORD': "F9f3K8Oz",
+        'HOST': "assignment1.cwkyueviprkv.us-east-1.rds.amazonaws.com",
+        'PORT': "3306",
     }
 }
 
