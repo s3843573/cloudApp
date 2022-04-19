@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "store.apps.StoreConfig",
-    "users.apps.UsersConfig"
+    "users.apps.UsersConfig",
+    "storages"
 ]
 
 MIDDLEWARE = [
@@ -128,8 +129,18 @@ LOGIN_REDIRECT_URL = "store-home"
 # LOGOUT_REDIRECT_URL = "store-home"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "images")
-MEDIA_URL = "/images/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediaFiles")
+MEDIA_URL = "https://cc-a1.s3.amazonaws.com/mediaFiles/"
 
-# ALLOWED_HOSTS = [
-#     'http://assignment1-env.eba-yvmjbxb8.us-east-1.elasticbeanstalk.com/']
+# # s3 bucket settings
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+# AWS_ACCESS_KEY_ID = "ASIAZTL4CKEJ76ZIZDS5"
+# AWS_S3_SESSION_PROFILE = ""
+# AWS_SECRET_ACCESS_KEY = "qhPeopdnHcOBJzprOmm3/VPhE3SYD8xk+MmMnMEn"
+
+# AWS_SESSION_TOKEN = "FwoGZXIvYXdzECUaDO7nCficA82hijKG6yLNATba/M8H73fJn2kp9/MiOFzNJGUulDQKr9nyqnKSnvxS9dHZe6GoeO8W6WDVdXT3P0jYRl6bkUMdcPRdC4gSjyPGDTxoN3Zi05HaBCX6myzNMuWFSlr9Wx+OZZTHyxs7DQMqfVPpFFc6Jwofk6vb+jHvV9jrYn9qNRus/JYD33iScW8BPmRJAeo9Ov1UZ0PHi+BdnRarrO6hQgKbNVvcNWo+QRI75iyBFimjPcEqWnykFW3ixouzdjXxdw1Fe8frNBKN5u7ckXZryAIiZMAoyfvvkgYyLVAjJH9A0WYrhZMiF/brLfRUI+5xSrwo2jt7mCy8sj+yOJe9aC5la0vVSdrkVA=="
+
+# AWS_STORAGE_BUCKET_NAME = "cc-a1"
