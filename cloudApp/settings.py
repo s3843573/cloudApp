@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     "store.apps.StoreConfig",
     "users.apps.UsersConfig",
-    # "storages",
+    "storages",
 
     'allauth',
     'allauth.account',
@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'cloudApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "a1",
+        'USER': "admin",
+        'PASSWORD': "F9f3K8Oz",
+        'HOST': "assignment1.cwkyueviprkv.us-east-1.rds.amazonaws.com",
+        'PORT': "3306",
     }
 }
 
@@ -171,6 +175,6 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_STORAGE_BUCKET_NAME = "cc-a1"
 
-aws_access_key_id = "ASIAZTL4CKEJ3WTXWFPN"
-aws_secret_access_key = "fhK9f3tKnebyYyH6SVkBtQxRaPlEGcyIDvs8jIM2"
-aws_session_token = "FwoGZXIvYXdzEID//////////wEaDC3sGjz8AfAaWqozFSLNAZ0HC3KNTd3jbziuJhiGF6JnMuytE8GBkQPp58vSKSqVPFZ5chxFZ4LLqpR5d2f5tYv15aZVJklJClteRUlB7OzdglWZ7MSU2L30PJt6X1eh4otfAtpvxooCPDyCkYtK8DL2fjDw/IOAiqE8An4nG2LDa3N5Qg24orfcbCujqVFh5cbk6anZtLapwNgCFo/HB44oEvM2uMAdCjRcC10WAhk7PhoHN32d60QlfrZ5PbOLFYT91cGWqqExpFZd9Lc+lfkem3RX6Y998ReJzoko+/KDkwYyLQGHoMW3uZT4/QsBW2SaV16Kny8n0MZpe+1qKDSeqMTm4tJ0wsUIr3rsj4ZdGA=="
+# aws_access_key_id = "ASIAZTL4CKEJ2WUHL3VR"
+# aws_secret_access_key = "nuzgJAe5rvswLrapltEH4yUOpuFKWZvQpqkggtAb"
+# aws_session_token = "FwoGZXIvYXdzEIT//////////wEaDJPd0P9zbCV8ocT7/iLNAearOvFYOo/bBhilckmXDm4zqJFCgV0mzPrXtmLFnx/eL6mezErdza0CjnbDCTmO99DgTfWgLXL2RC+r3NSry6hbIxzJbNNbtQhIXUXJcva3jQak4hPK6ibEecrVvvmI+Rw1Tn0VmWr/RqwQN4DtT/WBdwvYAOLJimFiajXBjYA6+BLiWx2OTkNKvms5rOYz9/CJCJGvOZNiXntcKPtQlVN6H53584rUgBiYZqR5E7Aal1YDDZ+KBGRM9NE3li22A2Nycj1ala0wtSfW34sorPCEkwYyLRhPlmB4iZsixpHOmFPhELoqlhunEYAau4VIJ/O+0wHc5B+6nSIOLEhilCDmIw=="
