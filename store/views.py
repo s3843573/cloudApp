@@ -20,7 +20,9 @@ def home(request):
 
 
 def productInfo(request, id):
-    # product = Product.objects.get(id=id)
+    # productInfo = Product.objects.get(id=id)
+    # print("------------")
+    # print(productInfo.image.url)
 
     url = API_URL + F"/products/id?id={id}"
     contents = urllib.request.urlopen(url)
