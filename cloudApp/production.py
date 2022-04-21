@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-6h#=i3&0ze)7m46(*0u^$j@4$fs0q-kgh@(6v_@0i#_x+g8mq0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'a1-env.eba-bwtqkf5m.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ["http://a1-env.eba-bwtqkf5m.us-east-1.elasticbeanstalk.com/"]
 
 # Application definition
 
@@ -38,8 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     "store.apps.StoreConfig",
-    "users.apps.UsersConfig"
+    "users.apps.UsersConfig",
+    "storages",
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -57,7 +64,7 @@ ROOT_URLCONF = 'cloudApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,17 +84,9 @@ WSGI_APPLICATION = 'cloudApp.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "a1",
-        'USER': "admin",
-        'PASSWORD': "F9f3K8Oz",
-        'HOST': "assignment1.cwkyueviprkv.us-east-1.rds.amazonaws.com",
-        'PORT': "3306",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -123,6 +122,31 @@ USE_I18N = True
 USE_TZ = True
 
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
+
+# Additional configuration settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -137,8 +161,16 @@ LOGIN_REDIRECT_URL = "store-home"
 # LOGOUT_REDIRECT_URL = "store-home"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "images")
-MEDIA_URL = "/images/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
-# ALLOWED_HOSTS = [
-#     'http://assignment1-env.eba-yvmjbxb8.us-east-1.elasticbeanstalk.com/']
+# # s3 bucket settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+
+AWS_STORAGE_BUCKET_NAME = "cc-a1"
+
+aws_access_key_id = "ASIAZTL4CKEJ3WTXWFPN"
+aws_secret_access_key = "fhK9f3tKnebyYyH6SVkBtQxRaPlEGcyIDvs8jIM2"
+aws_session_token = "FwoGZXIvYXdzEID//////////wEaDC3sGjz8AfAaWqozFSLNAZ0HC3KNTd3jbziuJhiGF6JnMuytE8GBkQPp58vSKSqVPFZ5chxFZ4LLqpR5d2f5tYv15aZVJklJClteRUlB7OzdglWZ7MSU2L30PJt6X1eh4otfAtpvxooCPDyCkYtK8DL2fjDw/IOAiqE8An4nG2LDa3N5Qg24orfcbCujqVFh5cbk6anZtLapwNgCFo/HB44oEvM2uMAdCjRcC10WAhk7PhoHN32d60QlfrZ5PbOLFYT91cGWqqExpFZd9Lc+lfkem3RX6Y998ReJzoko+/KDkwYyLQGHoMW3uZT4/QsBW2SaV16Kny8n0MZpe+1qKDSeqMTm4tJ0wsUIr3rsj4ZdGA=="
