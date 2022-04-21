@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     "store.apps.StoreConfig",
     "users.apps.UsersConfig",
-    "storages"
+    # "storages",
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -57,7 +64,7 @@ ROOT_URLCONF = 'cloudApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,6 +122,31 @@ USE_I18N = True
 USE_TZ = True
 
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
+
+# Additional configuration settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -129,18 +161,16 @@ LOGIN_REDIRECT_URL = "store-home"
 # LOGOUT_REDIRECT_URL = "store-home"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "mediaFiles")
-MEDIA_URL = "https://cc-a1.s3.amazonaws.com/mediaFiles/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 # # s3 bucket settings
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-# AWS_ACCESS_KEY_ID = "ASIAZTL4CKEJ76ZIZDS5"
-# AWS_S3_SESSION_PROFILE = ""
-# AWS_SECRET_ACCESS_KEY = "qhPeopdnHcOBJzprOmm3/VPhE3SYD8xk+MmMnMEn"
+AWS_STORAGE_BUCKET_NAME = "cc-a1"
 
-# AWS_SESSION_TOKEN = "FwoGZXIvYXdzECUaDO7nCficA82hijKG6yLNATba/M8H73fJn2kp9/MiOFzNJGUulDQKr9nyqnKSnvxS9dHZe6GoeO8W6WDVdXT3P0jYRl6bkUMdcPRdC4gSjyPGDTxoN3Zi05HaBCX6myzNMuWFSlr9Wx+OZZTHyxs7DQMqfVPpFFc6Jwofk6vb+jHvV9jrYn9qNRus/JYD33iScW8BPmRJAeo9Ov1UZ0PHi+BdnRarrO6hQgKbNVvcNWo+QRI75iyBFimjPcEqWnykFW3ixouzdjXxdw1Fe8frNBKN5u7ckXZryAIiZMAoyfvvkgYyLVAjJH9A0WYrhZMiF/brLfRUI+5xSrwo2jt7mCy8sj+yOJe9aC5la0vVSdrkVA=="
-
-# AWS_STORAGE_BUCKET_NAME = "cc-a1"
+aws_access_key_id = "ASIAZTL4CKEJ3WTXWFPN"
+aws_secret_access_key = "fhK9f3tKnebyYyH6SVkBtQxRaPlEGcyIDvs8jIM2"
+aws_session_token = "FwoGZXIvYXdzEID//////////wEaDC3sGjz8AfAaWqozFSLNAZ0HC3KNTd3jbziuJhiGF6JnMuytE8GBkQPp58vSKSqVPFZ5chxFZ4LLqpR5d2f5tYv15aZVJklJClteRUlB7OzdglWZ7MSU2L30PJt6X1eh4otfAtpvxooCPDyCkYtK8DL2fjDw/IOAiqE8An4nG2LDa3N5Qg24orfcbCujqVFh5cbk6anZtLapwNgCFo/HB44oEvM2uMAdCjRcC10WAhk7PhoHN32d60QlfrZ5PbOLFYT91cGWqqExpFZd9Lc+lfkem3RX6Y998ReJzoko+/KDkwYyLQGHoMW3uZT4/QsBW2SaV16Kny8n0MZpe+1qKDSeqMTm4tJ0wsUIr3rsj4ZdGA=="
