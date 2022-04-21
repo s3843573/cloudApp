@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     "store.apps.StoreConfig",
     "users.apps.UsersConfig",
-    "storages"
+    "storages",
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -57,7 +64,7 @@ ROOT_URLCONF = 'cloudApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,8 +85,12 @@ WSGI_APPLICATION = 'cloudApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "a1",
+        'USER': "admin",
+        'PASSWORD': "F9f3K8Oz",
+        'HOST': "assignment1.cwkyueviprkv.us-east-1.rds.amazonaws.com",
+        'PORT': "3306",
     }
 }
 
@@ -115,6 +126,31 @@ USE_I18N = True
 USE_TZ = True
 
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
+
+# Additional configuration settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -129,18 +165,16 @@ LOGIN_REDIRECT_URL = "store-home"
 # LOGOUT_REDIRECT_URL = "store-home"
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "mediaFiles")
-MEDIA_URL = "https://cc-a1.s3.amazonaws.com/mediaFiles/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
 
 # # s3 bucket settings
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-# AWS_ACCESS_KEY_ID = "ASIAZTL4CKEJ76ZIZDS5"
-# AWS_S3_SESSION_PROFILE = ""
-# AWS_SECRET_ACCESS_KEY = "qhPeopdnHcOBJzprOmm3/VPhE3SYD8xk+MmMnMEn"
+AWS_STORAGE_BUCKET_NAME = "cc-a1"
 
-# AWS_SESSION_TOKEN = "FwoGZXIvYXdzECUaDO7nCficA82hijKG6yLNATba/M8H73fJn2kp9/MiOFzNJGUulDQKr9nyqnKSnvxS9dHZe6GoeO8W6WDVdXT3P0jYRl6bkUMdcPRdC4gSjyPGDTxoN3Zi05HaBCX6myzNMuWFSlr9Wx+OZZTHyxs7DQMqfVPpFFc6Jwofk6vb+jHvV9jrYn9qNRus/JYD33iScW8BPmRJAeo9Ov1UZ0PHi+BdnRarrO6hQgKbNVvcNWo+QRI75iyBFimjPcEqWnykFW3ixouzdjXxdw1Fe8frNBKN5u7ckXZryAIiZMAoyfvvkgYyLVAjJH9A0WYrhZMiF/brLfRUI+5xSrwo2jt7mCy8sj+yOJe9aC5la0vVSdrkVA=="
-
-# AWS_STORAGE_BUCKET_NAME = "cc-a1"
+# aws_access_key_id = "ASIAZTL4CKEJ2WUHL3VR"
+# aws_secret_access_key = "nuzgJAe5rvswLrapltEH4yUOpuFKWZvQpqkggtAb"
+# aws_session_token = "FwoGZXIvYXdzEIT//////////wEaDJPd0P9zbCV8ocT7/iLNAearOvFYOo/bBhilckmXDm4zqJFCgV0mzPrXtmLFnx/eL6mezErdza0CjnbDCTmO99DgTfWgLXL2RC+r3NSry6hbIxzJbNNbtQhIXUXJcva3jQak4hPK6ibEecrVvvmI+Rw1Tn0VmWr/RqwQN4DtT/WBdwvYAOLJimFiajXBjYA6+BLiWx2OTkNKvms5rOYz9/CJCJGvOZNiXntcKPtQlVN6H53584rUgBiYZqR5E7Aal1YDDZ+KBGRM9NE3li22A2Nycj1ala0wtSfW34sorPCEkwYyLRhPlmB4iZsixpHOmFPhELoqlhunEYAau4VIJ/O+0wHc5B+6nSIOLEhilCDmIw=="
