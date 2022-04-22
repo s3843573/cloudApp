@@ -15,9 +15,11 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-blue bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">Cloud App</a>
+        <a class="navbar-brand" style="color: #d6d6d6; font-weight: bold"
+          >Cloud App</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -42,7 +44,6 @@
             </li>
           </ul>
           {% if user.is_authenticated %}
-          <a href="{% url 'store-cart' %}" class="nav-item nav-link">Cart</a>
           <a href="{% url 'logout' %}" class="nav-item nav-link">Log Out</a>
           {% else %}
           <div class="navbar-nav">

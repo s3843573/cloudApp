@@ -1,32 +1,39 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-# Create your views here.
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from .forms import RegistrationForm
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "User Created")
             return redirect("login")
     else:
-        form = UserCreationForm()
+        form = RegistrationForm()
     return render(request, 'users/register.html', {'form': form})
 
 
-# def login(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(request, username, password)
-#     if user is not None:
-#         login(request, user)
-#         return redirect('store-home')
+def loginUser(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('store-home')
+        else:
+            messages.success(request, "Users Does not Exists")
+            return redirect('login')
 
-#     return None
+    return render(request, 'users/login.html')
 
 
-def logout(request):
-    pass
+def logoutUser(request):
+    logout(request)
+    messages.success(request, "You have Logged Out")
+    return redirect('store-home')

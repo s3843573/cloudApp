@@ -1,13 +1,12 @@
 {% extends "store/base.html" %} {% block content %}
 <div class="content-section">
-  <h1 class="text-center mt-5">User Registration Form</h1>
+  <h1 class="text-center mt-5">User Registration</h1>
   <form method="POST">
-    {% csrf_token %}
-    <div class="form-group">{{ form.as_p }}</div>
+    {% csrf_token %} {{ form.as_p }}
 
     <button type="submit" class="btn btn-primary mb-2">Sign Up</button>
     <div class="border-top pt-3">
-      <small class="text-muted mb-"><a href="#">Sign In</a></small>
+      <small class="text-muted mb-"><a href="/login">Sign In</a></small>
     </div>
   </form>
 </div>
