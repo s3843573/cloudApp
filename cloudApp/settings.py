@@ -154,7 +154,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -162,7 +162,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "store-home"
-# LOGOUT_REDIRECT_URL = "store-home"
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -171,10 +170,5 @@ MEDIA_URL = "/media/"
 # # s3 bucket settings
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 AWS_STORAGE_BUCKET_NAME = "cc-a1"
-
-# aws_access_key_id = "ASIAZTL4CKEJ2WUHL3VR"
-# aws_secret_access_key = "nuzgJAe5rvswLrapltEH4yUOpuFKWZvQpqkggtAb"
-# aws_session_token = "FwoGZXIvYXdzEIT//////////wEaDJPd0P9zbCV8ocT7/iLNAearOvFYOo/bBhilckmXDm4zqJFCgV0mzPrXtmLFnx/eL6mezErdza0CjnbDCTmO99DgTfWgLXL2RC+r3NSry6hbIxzJbNNbtQhIXUXJcva3jQak4hPK6ibEecrVvvmI+Rw1Tn0VmWr/RqwQN4DtT/WBdwvYAOLJimFiajXBjYA6+BLiWx2OTkNKvms5rOYz9/CJCJGvOZNiXntcKPtQlVN6H53584rUgBiYZqR5E7Aal1YDDZ+KBGRM9NE3li22A2Nycj1ala0wtSfW34sorPCEkwYyLRhPlmB4iZsixpHOmFPhELoqlhunEYAau4VIJ/O+0wHc5B+6nSIOLEhilCDmIw=="

@@ -2,8 +2,8 @@
 <div class="content-section">
   <h1 class="text-center mt-5">User Login</h1>
 
-  {% csrf_token %}
   <form method="POST">
+    {% csrf_token %}
     <div class="form-group">
       <label for="exampleInputEmail1">Username</label>
       <input
