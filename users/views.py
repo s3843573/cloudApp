@@ -28,12 +28,8 @@ def register(request):
             url = API_URL + "/register"
             username = form['username'].value()
             password = form['password1'].value()
-            userData = {
-                "username": username,
-                "password": password
-            }
-            res = requests.post(url, json.dumps(userData))
-            res = res.json()['message']
+            res = postRequest(url, username, password)
+            res = res['message']
             messages.success(request, res)
             return redirect("login")
         else:

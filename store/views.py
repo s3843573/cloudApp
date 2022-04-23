@@ -15,6 +15,7 @@ def home(request):
     res = requests.get(url)
     products = res.json()['products']
 
+    # get image url for s3 bucket
     for i in range(len(products)):
         products[i]['image'] = productsInfo[i].image.url
     return render(request, 'store/home.html', {'products': products})
@@ -22,10 +23,11 @@ def home(request):
 
 def productInfo(request, id):
     productInfo = Product.objects.get(id=id)
-
-    url = API_URL + F"/products/id?id={id}"
+    url = API_URL + f"/products/id?id={id}"
     res = requests.get(url)
     product = res.json()['product']
+
+    # get image url for s3 bucket
     product['image'] = productInfo.image.url
     return render(request, 'store/product.html', {'product': product})
 
